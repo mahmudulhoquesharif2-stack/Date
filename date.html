@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A little question for you 💗</title>
+<style>
+:root{--pink:#e99abf;--hot:#c21875;--mint:#e5f6eb;--ink:#463344}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 15% 15%,#f9dce9 0,transparent 35%),radial-gradient(circle at 90% 85%,#d9f1e5 0,transparent 35%),#f8f3f7;color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif}
+.card{width:min(100%,460px);background:var(--mint);border:1px solid #cce8d5;border-radius:24px;box-shadow:0 18px 55px #68415b20;padding:32px 24px 27px;text-align:center;position:relative;overflow:hidden}
+.sparkle{font-size:20px;letter-spacing:12px;color:#e2a6c2}
+.avatar{width:76px;height:76px;margin:15px auto 18px;border-radius:24px;background:#fff;display:grid;place-items:center;font-size:38px;box-shadow:0 5px 18px #7d56621c}
+h1{font-family:Georgia,serif;font-size:clamp(27px,7vw,36px);line-height:1.22;font-weight:600;margin:12px 0;color:#50334a}
+.subtitle{font-size:15px;line-height:1.65;color:#826b7b;margin:0 auto 24px;max-width:330px}
+.actions{display:flex;justify-content:center;align-items:center;gap:14px;margin:22px 0 8px;min-height:58px;position:relative}
+button{font:inherit;font-weight:700;border:0;border-radius:999px;padding:13px 23px;cursor:pointer;transition:transform .18s,box-shadow .18s}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #ad4e8b;outline-offset:3px}
+.yes{background:var(--hot);color:white;box-shadow:0 6px 14px #c2187533}
+.yes:hover{transform:translateY(-2px);box-shadow:0 9px 18px #c2187540}
+.no{background:#fff;color:#886f82;border:1px solid #e8dbe4}
+.no.dodging{position:fixed;z-index:10;transition:left .22s cubic-bezier(.2,.8,.2,1),top .22s cubic-bezier(.2,.8,.2,1),transform .18s cubic-bezier(.2,.8,.2,1);will-change:left,top,transform;animation:jelly .42s ease}
+@keyframes jelly{0%{transform:scale(1,1)}20%{transform:scale(1.22,.78)}40%{transform:scale(.78,1.22)}60%{transform:scale(1.12,.9)}80%{transform:scale(.94,1.06)}100%{transform:scale(1,1)}}
+.form{display:none;margin-top:20px;text-align:left;animation:rise .35s ease}
+.form h2,.success h2{font-family:Georgia,serif;font-weight:500;font-size:27px;margin:0 0 10px;text-align:center}
+.form .subtitle{text-align:center;margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:700;margin:13px 0 7px;color:#775e71}
+input,select,textarea{width:100%;border:1px solid #d8e7dc;background:#fff;border-radius:12px;padding:12px 13px;font:inherit;color:#4c3948}
+textarea{resize:vertical;min-height:88px}
+.submit{width:100%;margin-top:20px}
+.note{font-size:12px;color:#a18c9c;margin-top:22px}
+.status{font-size:13px;text-align:center;line-height:1.5;color:#765d70;margin-top:12px}
+.success{display:none;padding:25px 0 5px;animation:rise .4s ease}
+.success .big{font-size:58px}
+.success p{line-height:1.7;color:#806b7c}
+.smallbtn{background:#fff;color:#886f82;border:1px solid #e8dbe4}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:390px){.card{padding:26px 18px}.actions{gap:9px}button{padding:12px 18px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="sparkle">✦ · ˚ ✧ · ✦</div>
+  <div class="avatar" aria-hidden="true">💌</div>
+  <section id="question">
+    <h1>Do you wanna go on a date with Sharif?</h1>
+    <p class="subtitle">I’ve been meaning to ask you something… and I thought a little cute page would make it more fun. 💗</p>
+    <div class="actions" id="actions">
+      <button class="yes" id="yesBtn">Yes, I’d love to! 💖</button>
+      <button class="no" id="noBtn" aria-label="Not sure, no pressure">No, thanks 🙈</button>
+    </div>
+    <p class="note" id="jokeNote">Psst… the “No” button is made of jelly. Good luck catching it! 🍮💗</p>
+  </section>
+
+  <section class="form" id="dateForm">
+    <h2>Yay! Let’s plan our date 🥰</h2>
+    <p class="subtitle">Tell me what sounds fun. I’ll be looking forward to it!</p>
+    <form id="detailsForm">
+      <label for="guestName">Your name (optional)</label>
+      <input id="guestName" name="guest_name" autocomplete="name" placeholder="What should I call you?">
+      <label for="date">What day works for you? *</label>
+      <input type="date" id="date" name="date" required>
+      <label for="time">What time works best? *</label>
+      <select id="time" name="time" required>
+        <option value="">Choose a time</option><option>Morning</option><option>Afternoon</option><option>Evening</option>
+      </select>
+      <label for="food">What would you like to eat? *</label>
+      <select id="food" name="food" required>
+        <option value="">Choose a food idea</option>
+        <option>Coffee & dessert ☕</option><option>Pizza 🍕</option><option>Burgers 🍔</option>
+        <option>Biriyani 🍛</option><option>Ice cream 🍦</option><option>Something else / surprise me ✨</option>
+      </select>
+      <label for="activity">What would you like to do? *</label>
+      <select id="activity" name="activity" required>
+        <option value="">Choose an activity</option><option>Go for a walk 🌿</option><option>Watch a movie 🎬</option>
+        <option>Visit a café ☕</option><option>Have dinner 🍽️</option><option>Just hang out and talk 💬</option><option>Surprise me 🎁</option>
+      </select>
+      <label for="extra">Anything else you want to tell me? (optional)</label>
+      <textarea id="extra" name="message" placeholder="Your preferences, ideas, or a little note…"></textarea>
+      <button class="yes submit" id="submitBtn" type="submit">Send my answer 💌</button>
+      <p class="status" id="emailStatus" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="success" id="success" aria-live="polite">
+    <div class="big">💞</div>
+    <h2>It’s a date!</h2>
+    <p id="confirmation">I’m so happy you said yes!</p>
+    <p>Your answer has been sent to Sharif. Can’t wait to spend some time with you. ✨</p>
+    <button class="smallbtn" id="againBtn" type="button">Back to the beginning</button>
+  </section>
+</main>
+
+<!-- EmailJS browser SDK. Add your EmailJS IDs in the configuration below before publishing. -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+/*
+  EMAILJS SETUP:
+  1) Create an account at https://www.emailjs.com/
+  2) Create an email service and a template addressed to mahmudulhoquesharif3@gmail.com.
+  3) Replace these three placeholders with your EmailJS Public Key, Service ID, and Template ID.
+  4) In the template, use: {{to_email}}, {{guest_name}}, {{date}}, {{time}}, {{food}}, {{activity}}, {{message}}.
+*/
+const EMAILJS_PUBLIC_KEY = "IG8eGM_QLsOby4XHX";
+const EMAILJS_SERVICE_ID = "service_rrbuzsb";
+const EMAILJS_TEMPLATE_ID = "template_qtbg5x8";
+const YOUR_EMAIL = "mahmudulhoquesharif3@gmail.com";
+
+if (window.emailjs && !EMAILJS_PUBLIC_KEY.startsWith("YOUR_")) {
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
+
+const question = document.querySelector('#question');
+const formSection = document.querySelector('#dateForm');
+const success = document.querySelector('#success');
+const noBtn = document.querySelector('#noBtn');
+const actions = document.querySelector('#actions');
+let dodgeCount = 0;
+
+document.querySelector('#yesBtn').addEventListener('click', () => {
+  question.style.display = 'none';
+  formSection.style.display = 'block';
+});
+
+// The "No" button playfully dodges forever. It never submits or opens the no-thanks screen.
+function dodgeNoButton() {
+  noBtn.classList.add('dodging');
+  const pad = 14;
+  const maxX = Math.max(pad, window.innerWidth - noBtn.offsetWidth - pad);
+  const maxY = Math.max(pad, window.innerHeight - noBtn.offsetHeight - pad);
+  const x = pad + Math.random() * Math.max(0, maxX - pad);
+  const y = pad + Math.random() * Math.max(0, maxY - pad);
+  noBtn.style.left = x + 'px';
+  noBtn.style.top = y + 'px';
+  // Retrigger the jelly wobble on every dodge.
+  noBtn.style.animation = 'none';
+  void noBtn.offsetWidth;
+  noBtn.style.animation = 'jelly .42s ease';
+  noBtn.style.transform = `rotate(${Math.random()*24-12}deg) scale(${0.9+Math.random()*0.2})`;
+  noBtn.textContent = ['Slippery! 🙈','Boing! 🍮','Wobble wobble! 💗','Too slow! ✨'][Math.floor(Math.random()*4)];
+}
+noBtn.addEventListener('pointerenter', dodgeNoButton);
+noBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); dodgeNoButton(); });
+noBtn.addEventListener('click', (e) => { e.preventDefault(); dodgeNoButton(); });
+noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); dodgeNoButton(); }, {passive:false});
+window.addEventListener('resize', () => {
+  if (noBtn.classList.contains('dodging')) dodgeNoButton();
+});
+
+document.querySelector('#detailsForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const status = document.querySelector('#emailStatus');
+  const submitBtn = document.querySelector('#submitBtn');
+  const date = document.querySelector('#date').value;
+  const time = document.querySelector('#time').value;
+  const food = document.querySelector('#food').value;
+  const activity = document.querySelector('#activity').value;
+  const guestName = document.querySelector('#guestName').value.trim() || 'Not provided';
+  const message = document.querySelector('#extra').value.trim() || 'No extra message';
+  const prettyDate = new Date(date + 'T12:00:00').toLocaleDateString(undefined, {weekday:'long', month:'long', day:'numeric', year:'numeric'});
+  const templateParams = {
+    to_email: YOUR_EMAIL, guest_name: guestName, date: prettyDate,
+    time, food, activity, message
+  };
+
+  if (!window.emailjs || EMAILJS_PUBLIC_KEY.startsWith('YOUR_') ||
+      EMAILJS_SERVICE_ID.startsWith('YOUR_') || EMAILJS_TEMPLATE_ID.startsWith('YOUR_')) {
+    status.textContent = 'The form is ready, but email delivery is not configured yet. Add your EmailJS Public Key, Service ID, and Template ID in this file.';
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending… 💌';
+  status.textContent = 'Sending your answer to Sharif…';
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+    document.querySelector('#confirmation').textContent =
+      `${prettyDate}, ${time.toLowerCase()} • ${food} • ${activity}. I’m so happy you said yes!`;
+    formSection.style.display = 'none';
+    success.style.display = 'block';
+  } catch (error) {
+    console.error('EmailJS send failed:', error);
+    status.textContent = 'Sorry, the email could not be sent. Please check the EmailJS setup and try again.';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send my answer 💌';
+  }
+});
+
+document.querySelector('#againBtn').addEventListener('click', () => {
+  success.style.display = 'none'; question.style.display = 'block';
+  formSection.style.display = 'none';
+});
+document.querySelector('#date').min = new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
